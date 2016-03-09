@@ -11,5 +11,9 @@ public class testSplitt extends junit.framework.TestCase{
 		File fil = new File ("pakkeTest.txt");
 		assertEquals(fil, string.getFile());
 	}
+	
+	public void test(){
+		
+	}
 
 }
