@@ -42,7 +42,6 @@ public class Main extends Application {
 			skiltGruppe.add(new Skilt_uten_tekst(4));
 			skiltGruppe.add(new Skilt_uten_tekst(11));
 			
-			
 			AnchorPane root = FXMLLoader.load(getClass().getResource("/sample/bilder.fxml"));
 			Scene scene = new Scene(root,600,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
