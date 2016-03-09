@@ -6,13 +6,13 @@ import klasser.Splitt;
 
 public class testSplitt extends junit.framework.TestCase{
 	
-	public void testDele(){
+	public void testgetFile(){
 		Splitt string = new Splitt("pakkeTest.txt");
 		File fil = new File ("pakkeTest.txt");
 		assertEquals(fil, string.getFile());
 	}
 	
-	public void test(){
+	public void testDele(){
 		
 	}
 
