@@ -7,8 +7,4 @@ public class Controller {
 
     @FXML TextField text;
 
-    @FXML public void knapp() {
-
-    }
-
 }
