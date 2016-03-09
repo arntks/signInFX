@@ -13,7 +13,8 @@ public class testSplitt extends junit.framework.TestCase{
 	}
 	
 	public void testDele(){
-		
+		File fil = new File ("pakkeTest.txt");
+//TODO: leg test 
 	}
 
 }

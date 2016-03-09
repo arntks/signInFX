@@ -9,42 +9,42 @@ public class Splitt {
 
 	private File fil;
 	private ArrayList<Skilt> skiltGruppe = new ArrayList<Skilt>();
-	
+
 	public Splitt(String fil){
 		this.fil = new File (fil);
 	}
-	
+
 	public File getFile(){
 		return this.fil;
 	}
-	
-	
+
+
 	public void dele(File fil){
-			Scanner scanner;
-			String tekst = null;
-			int skiltgr;
-			int skiltnr;
-			try {
-				scanner = new Scanner(fil);
-				while(scanner.hasNextLine()){
-					String skilt = scanner.nextLine();
-					String[] s = skilt.split("#");
-					skiltgr = Integer.parseInt(s[0]);
-					skiltnr = Integer.parseInt(s[1]);
-					
-					if (s.length > 2){
-						tekst = s[2];
-					}
+		Scanner scanner;
+		String tekst = null;
+		int skiltgr;
+		int skiltnr;
+		try {
+			scanner = new Scanner(fil);
+			while(scanner.hasNextLine()){
+				String skilt = scanner.nextLine();
+				String[] s = skilt.split("#");
+				skiltgr = Integer.parseInt(s[0]);
+				skiltnr = Integer.parseInt(s[1]);
+
+				if (s.length > 2){
+					tekst = s[2];
+				}
 				this.makeSkilt(skiltgr, skiltnr, tekst);
-				}	
-			
+			}	
+
 			scanner.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();}
-			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();}
+	}
 
 	public void makeSkilt(int skiltgr, int skiltnr, String tekst){
-		
+
 		if(skiltgr == 1){
 			this.skiltGruppe.add(new SkiltFart(skiltnr));
 		}else if(skiltgr ==2){
@@ -56,10 +56,10 @@ public class Splitt {
 		}
 
 	}
-	
+
 	public ArrayList<Skilt> getSkiltGruppe(){
 		return skiltGruppe;
 	}
-	
-	
+
+
 }
