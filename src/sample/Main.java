@@ -70,13 +70,13 @@ public class Main extends Application {
 				pictures = mp.getPictures();
 				labels = mp.getLabels();
 			}
-			/*else if(skiltGruppe.size()==6){
+			else if(skiltGruppe.size()==6){
 				SixImage mp = new SixImage(skiltGruppe);
 				mp.makeP(); 	
 				mp.makeT();
 				pictures = mp.getPictures();
 				labels = mp.getLabels();
-			}*/
+			}
 			else{
 				throw new IllegalArgumentException();
 			}
