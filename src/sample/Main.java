@@ -29,18 +29,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			/*String nokkel = lesKort() + ".txt";
+			String nokkel = lesKort() + ".txt";
 	        Splitt splitt = new Splitt(nokkel);
 	        File fil = splitt.getFile();
 	        splitt.dele(fil);
 	        ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
-			*/
-			ArrayList<Skilt> skiltGruppe = new ArrayList<Skilt>();
-			skiltGruppe.add(new SkiltFart(80));
-			skiltGruppe.add(new Skilt_uten_tekst(6));
-			skiltGruppe.add(new Skilt_uten_tekst(1));
-			skiltGruppe.add(new Skilt_uten_tekst(4));
-			skiltGruppe.add(new Skilt_uten_tekst(11));
+			
 			
 			AnchorPane root = FXMLLoader.load(getClass().getResource("/sample/bilder.fxml"));
 			Scene scene = new Scene(root,600,400);
@@ -77,14 +71,14 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	/*
+	
 	private static String lesKort(){
         Scanner scanner = new Scanner(System.in);
         String kortnr = scanner.next();
         scanner.close();
         return kortnr;
     }
-	*/
+	
 	
 	public static void main(String[] args) {
 		launch(args);
