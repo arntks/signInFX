@@ -18,7 +18,7 @@ public class FiveImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public FiveImage(ArrayList<Skilt> skiltGruppe){
-		numList.addAll(Arrays.asList(0,150,310,400,490));
+		numList.addAll(Arrays.asList(80,340,60,240,440));
 		for(int i=0; i<5; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -61,8 +61,8 @@ public class FiveImage {
 			label.setText("Tekst");
 			label.setFont(new Font("Arial",20));
 			
-			if(i<=1) y=170;
-			else y=110;
+			if(i<=1) y=240;
+			else y= 360;
 			
 			label.setLayoutX(numList.get(i));
 			label.setLayoutY(y);
