@@ -54,16 +54,12 @@ public class FiveImage {
 	}
 	
 	public void makeT(){
-		int y;
+		int y=170;
 		
-		for(int i=0; i<5; i++){
+		for(int i=2; i<5; i++){
 			Label label = new Label();
-			label.setText("Tekst");
-			label.setFont(new Font("Arial",20));
-			
-			if(i<=1) y=240;
-			else y= 360;
-			
+			label.setText(textList.get(i));
+			label.setFont(new Font("Arial",30));
 			label.setLayoutX(numList.get(i));
 			label.setLayoutY(y);
 			

@@ -52,19 +52,7 @@ public class TwoImage {
 		}
 	}
 	
-	public void makeT(){
-		int y =170;
-		
-		for(int i=0; i<2; i++){
-			Label label = new Label();
-			label.setText("Tekst");
-			label.setFont(new Font("Arial",30));
-			label.setLayoutX(numList.get(i));
-			label.setLayoutY(y);
-			
-			labels.add(label);
-		}	
-	}
+	
 	
 	public ArrayList getPictures(){
 		return pictures;
