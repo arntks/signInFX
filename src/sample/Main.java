@@ -44,10 +44,8 @@ public class Main extends Application {
 			
 			if(skiltGruppe.size()==2){
 				TwoImage mp = new TwoImage(skiltGruppe);
-				mp.makeP(); 	
-				mp.makeT();
+				mp.makeP(); 
 				pictures = mp.getPictures();
-				labels = mp.getLabels();
 			}
 			else if(skiltGruppe.size()==3){
 				ThreeImage mp = new ThreeImage(skiltGruppe);
@@ -86,7 +84,7 @@ public class Main extends Application {
 			
 			for (int i=0; i<pictures.size(); i++){ 
 				root.getChildren().add(pictures.get(i));
-				root.getChildren().add(labels.get(i));
+				if (i > 1) root.getChildren().add(labels.get(i-2));
 			}
 			
 			
