@@ -43,14 +43,14 @@ public class Main extends Application {
 	
 			
 			if(skiltGruppe.size()==2){
-				FourImage mp = new FourImage(skiltGruppe);
+				TwoImage mp = new TwoImage(skiltGruppe);
 				mp.makeP(); 	
 				mp.makeT();
 				pictures = mp.getPictures();
 				labels = mp.getLabels();
 			}
 			else if(skiltGruppe.size()==3){
-				FourImage mp = new FourImage(skiltGruppe);
+				ThreeImage mp = new ThreeImage(skiltGruppe);
 				mp.makeP(); 	
 				mp.makeT();
 				pictures = mp.getPictures();
@@ -70,21 +70,17 @@ public class Main extends Application {
 				pictures = mp.getPictures();
 				labels = mp.getLabels();
 			}
-			else if(skiltGruppe.size()==6){
-				FourImage mp = new FourImage(skiltGruppe);
+			/*else if(skiltGruppe.size()==6){
+				SixImage mp = new SixImage(skiltGruppe);
 				mp.makeP(); 	
 				mp.makeT();
 				pictures = mp.getPictures();
 				labels = mp.getLabels();
-			}
+			}*/
 			else{
 				throw new IllegalArgumentException();
 			}
-			//For fire skilt:
 			
-			
-				
-			//For fem skilt:
 			
 			
 			
