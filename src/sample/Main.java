@@ -84,7 +84,7 @@ public class Main extends Application {
 			
 			for (int i=0; i<pictures.size(); i++){ 
 				root.getChildren().add(pictures.get(i));
-				root.getChildren().add(labels.get(i));
+				if (i > 1) root.getChildren().add(labels.get(i-2));
 			}
 			
 			

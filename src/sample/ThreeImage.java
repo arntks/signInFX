@@ -55,7 +55,7 @@ public class ThreeImage {
 	public void makeT(){
 		int y =170;
 		
-		for(int i=0; i<3; i++){
+		for(int i=2; i<3; i++){
 			Label label = new Label();
 			label.setText(textList.get(i));
 			label.setFont(new Font("Arial",30));
