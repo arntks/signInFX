@@ -8,17 +8,22 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
+import klasser.Skilt;
 
 public class FourImage {
 	
 	private ArrayList<ImageView> pictures = new ArrayList<ImageView>();
 	private ArrayList<Label> labels = new ArrayList<Label>();
 	private ArrayList <Integer> numList = new ArrayList <Integer>();
-	private ArrayList <String> textList = new ArrayList <String> ();
+	private ArrayList <Image> imgList = new ArrayList <Image>();
+	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public FourImage(String bilde1, String bilde2, String bilde3, String bilde4){
+	public FourImage(ArrayList<Skilt> skiltGruppe){
 		numList.addAll(Arrays.asList(0,150,300,450));
-		textList.addAll(Arrays.asList(bilde1,bilde2,bilde3,bilde4));
+		for(int i=0; i<4; i++){
+			imgList.add(skiltGruppe.get(i).hentBilde());
+			textList.add(skiltGruppe.get(i).hentTekst());
+		}
 	}
 	
 	public void makeP(){
@@ -29,9 +34,15 @@ public class FourImage {
 		int y=10;
 		
 		for(int i=0; i<4; i++){
-			Image img = new Image("img/"+textList.get(i)+".png");
-			ImageView imgView = new ImageView(img);
-			imgView.setImage(img);
+			ImageView imgView = new ImageView();
+			imgView.setImage(imgList.get(i));
+			if(i<= 1){
+				h=200;
+				b=200;
+			}else{
+				h=100;
+				b=100;
+			}
 			imgView.setFitHeight(h);
 			imgView.setFitWidth(b);
 			imgView.setX(numList.get(i));

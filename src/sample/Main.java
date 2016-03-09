@@ -41,21 +41,52 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 	
+			
+			if(skiltGruppe.size()==2){
+				FourImage mp = new FourImage(skiltGruppe);
+				mp.makeP(); 	
+				mp.makeT();
+				pictures = mp.getPictures();
+				labels = mp.getLabels();
+			}
+			else if(skiltGruppe.size()==3){
+				FourImage mp = new FourImage(skiltGruppe);
+				mp.makeP(); 	
+				mp.makeT();
+				pictures = mp.getPictures();
+				labels = mp.getLabels();
+			}
+			else if(skiltGruppe.size()==4){
+				FourImage mp = new FourImage(skiltGruppe);
+				mp.makeP(); 	
+				mp.makeT();
+				pictures = mp.getPictures();
+				labels = mp.getLabels();
+			}
+			else if (skiltGruppe.size()==5){
+				FiveImage mp = new FiveImage(skiltGruppe);
+				mp.makeP();
+				mp.makeT();
+				pictures = mp.getPictures();
+				labels = mp.getLabels();
+			}
+			else if(skiltGruppe.size()==6){
+				FourImage mp = new FourImage(skiltGruppe);
+				mp.makeP(); 	
+				mp.makeT();
+				pictures = mp.getPictures();
+				labels = mp.getLabels();
+			}
+			else{
+				throw new IllegalArgumentException();
+			}
 			//For fire skilt:
 			
-			/*FourImage mp = new FourImage("bilde1","bilde2","bilde3","bilde4");
-			mp.makeP(); 	
-			mp.makeT();
-			pictures = mp.getPictures();
-			labels = mp.getLabels();*/
+			
 				
 			//For fem skilt:
 			
-			FiveImage mp = new FiveImage(skiltGruppe);
-			mp.makeP();
-			mp.makeT();
-			pictures = mp.getPictures();
-			labels = mp.getLabels();
+			
 			
 			for (int i=0; i<pictures.size(); i++){ 
 				root.getChildren().add(pictures.get(i));
