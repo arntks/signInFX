@@ -30,17 +30,19 @@ public class FiveImage {
 	public void makeP(){
 		int h;
 		int b;
-		int y=10;
+		int y;
 		
 		for(int i=0; i<5; i++){
 			ImageView imgView = new ImageView();
 			imgView.setImage(imgList.get(i));
 			if(i<= 1){
-				h=200;
-				b=200;
+				h=180;
+				b=180;
+				y=60;
 			}else{
 				h=100;
 				b=100;
+				y=260;
 			}
 			imgView.setFitHeight(h);
 			imgView.setFitWidth(b);
