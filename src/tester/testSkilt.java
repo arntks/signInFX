@@ -1,8 +1,6 @@
 package tester;
 
 import javafx.scene.image.Image;
-import java.io.ByteArrayInputStream;
-import klasser.Skilt;
 import klasser.SkiltFart;
 import klasser.Skilt_med_tekst;
 import klasser.Skilt_uten_tekst;
