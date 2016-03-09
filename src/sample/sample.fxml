@@ -10,13 +10,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <VBox alignment="TOP_CENTER" prefHeight="6.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField />
-            <Button alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
+            <TextField fx:id="text" />
+            <Button fx:id="knapp" alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField prefHeight="150.0" prefWidth="149.0">
