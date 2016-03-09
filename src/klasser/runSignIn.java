@@ -26,7 +26,7 @@ public class runSignIn {
         }
     }
 
-    private static String lesKort(){
+    public static String lesKort(){
         Scanner scanner = new Scanner(System.in);
         String kortnr = scanner.next();
         scanner.close();
