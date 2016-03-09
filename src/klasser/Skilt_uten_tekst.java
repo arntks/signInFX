@@ -8,10 +8,6 @@ public class Skilt_uten_tekst extends Skilt{
 		this.skiltgruppe = 3;
 	}
 	
-	@Override
-	public void hentBilde() {
-		//metode som henter ut bilde
-		
-	}
+
 
 }

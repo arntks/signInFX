@@ -17,12 +17,4 @@ public class Skilt_med_tekst extends Skilt{
         return this.tekst;
     }
 
-    @Override
-    public void hentBilde() {
-        //metode som henter ut bilde
-
-        //filnavn11
-
-    }
-
 }

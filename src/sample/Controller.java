@@ -5,6 +5,4 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
-    @FXML TextField text;
-
 }
