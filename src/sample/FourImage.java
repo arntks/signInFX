@@ -19,7 +19,7 @@ public class FourImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public FourImage(ArrayList<Skilt> skiltGruppe){
-		numList.addAll(Arrays.asList(0,150,300,450));
+		numList.addAll(Arrays.asList(60,60,300,450));
 		for(int i=0; i<4; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -28,20 +28,25 @@ public class FourImage {
 	
 	public void makeP(){
 		
-		int h=150;
-		int b=150;
-		int x=100;
-		int y=10;
+		int h;
+		int b;
+		int y;
 		
 		for(int i=0; i<4; i++){
 			ImageView imgView = new ImageView();
 			imgView.setImage(imgList.get(i));
-			if(i<= 1){
-				h=200;
-				b=200;
+			if(i==0){
+				h=150;
+				b=150;
+				y=60;
+			}else if(i==1){
+				h=150;
+				b=150;
+				y=230;
 			}else{
-				h=100;
-				b=100;
+				h=90;
+				b=90;
+				y=260;
 			}
 			imgView.setFitHeight(h);
 			imgView.setFitWidth(b);
@@ -53,7 +58,7 @@ public class FourImage {
 	}
 	
 	public void makeT(){
-		int y =170;
+		int y =350;
 		
 		for(int i=2; i<4; i++){
 			Label label = new Label();
