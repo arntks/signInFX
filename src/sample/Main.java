@@ -25,6 +25,8 @@ import javafx.scene.layout.VBox;
 public class Main extends Application {
 	private ArrayList<ImageView> pictures = new ArrayList<ImageView>();
 	private ArrayList<Label> labels = new ArrayList <Label>();
+	private ArrayList<Label> fartLabels = new ArrayList <Label>();
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -79,7 +81,13 @@ public class Main extends Application {
 				throw new IllegalArgumentException();
 			}
 			
+			UpdateSpeed us = new UpdateSpeed();
+			fartLabels = us.makeLabel();			
+			root.getChildren().addAll(fartLabels.get(0), fartLabels.get(1));
 			
+			TopLine topLine = new TopLine();
+			Label topLabel = topLine.makeTopLabel();
+			root.getChildren().add(topLabel);
 			
 			
 			for (int i=0; i<pictures.size(); i++){ 
