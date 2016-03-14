@@ -78,7 +78,7 @@ public class FiveImage {
 			label.setFont(new Font("Arial",20));
 			label.setLayoutX(numList.get(i));
 			label.setLayoutY(y);
-			label.setTextFill(Color.web("#FFFFFF"));
+			label.setTextFill(Color.web("#F8F8F8"));
 			labels.add(label);
 		}	
 
