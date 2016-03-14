@@ -18,7 +18,7 @@ public class FiveImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public FiveImage(ArrayList<Skilt> skiltGruppe){
-		numList.addAll(Arrays.asList(60,60,390,340,450));
+		numList.addAll(Arrays.asList(60,60,390,307,473));
 		for(int i=0; i<5; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -42,15 +42,15 @@ public class FiveImage {
 			}else if(i==1){
 				h=150;
 				b=150;
-				y=225;
+				y=230;
 			}else if(i==2){
 				h=90;
 				b=90;
-				y=200;
+				y=180;
 			}else{
 				h=90;
 				b=90;
-				y=295;
+				y=280;
 			}
 			
 			
@@ -75,6 +75,7 @@ public class FiveImage {
 			
 			labels.add(label);
 		}	
+
 	}
 	
 	public ArrayList getPictures(){
