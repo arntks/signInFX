@@ -19,7 +19,7 @@ public class ThreeImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public ThreeImage(ArrayList<Skilt> skiltGruppe){
-		numList.addAll(Arrays.asList(0,150,300));
+		numList.addAll(Arrays.asList(60 , 60 , 380));
 		for(int i=0; i<3; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -36,12 +36,19 @@ public class ThreeImage {
 		for(int i=0; i<3; i++){
 			ImageView imgView = new ImageView();
 			imgView.setImage(imgList.get(i));
-			if(i<= 1){
-				h=200;
-				b=200;
-			}else{
+			if(i== 0){
+				h=150;
+				b=150;
+				y=60;
+			}else if(i==1){
+				h=150;
+				b=150;
+				y=225;
+			} else {
 				h=100;
 				b=100;
+				y=250;
+				
 			}
 			imgView.setFitHeight(h);
 			imgView.setFitWidth(b);
