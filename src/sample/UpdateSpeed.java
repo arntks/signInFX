@@ -18,7 +18,7 @@ public class UpdateSpeed {
 	private ArrayList<Label> labels = new ArrayList<Label>();
 	
 	
-	public ArrayList makeLabel(){
+	public ArrayList<Label> makeLabel(){
 		
 		DropShadow skygge = new DropShadow();
 		skygge.setColor(Color.web("#000000"));
