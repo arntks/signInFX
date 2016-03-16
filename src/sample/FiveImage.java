@@ -90,11 +90,11 @@ public class FiveImage {
 
 	}
 	
-	public ArrayList getPictures(){
+	public ArrayList<ImageView> getPictures(){
 		return pictures;
 	}
 	
-	public ArrayList getLabels(){
+	public ArrayList<Label> getLabels(){
 		return labels;
 	}
 
