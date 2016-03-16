@@ -25,7 +25,7 @@ public class UpdateSpeed {
 		skygge.setRadius(20);
 		
 		Label fartLabel = new Label();
-		fartLabel.setText("74");
+		fartLabel.setText("76");
 		fartLabel.setFont(new Font("Arial",120));
 		fartLabel.setLayoutX(310);
 		fartLabel.setLayoutY(37);
