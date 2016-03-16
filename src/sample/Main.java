@@ -5,37 +5,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import klasser.Skilt;
-import klasser.SkiltFart;
-import klasser.Skilt_uten_tekst;
 import klasser.Splitt;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 	private ArrayList<ImageView> pictures = new ArrayList<ImageView>();
 	private ArrayList<Label> labels = new ArrayList<Label>();
 	private ArrayList<Label> fartLabels = new ArrayList<Label>();
+	private	Stage primaryStage = new Stage();
 
 	@Override
 	public void start(Stage primaryStage) {
+		Scanner scanner = new Scanner(System.in);
+		String kortnr = scanner.next();
+//		while (!(kortnr = scanner.nextLine()).contentEquals("exit")) {
+//			makeScene(kortnr);
+//		}
+		makeScene(kortnr);
+		Scanner scanner2 = new Scanner(System.in);
+	}
+	
+	public void makeScene (String kortNr) {
 		try {
-			Boolean check = true;
-			String kortNr = lesKort();
-			while (check) {
-				if (kortNr == "exit") {
-					check = false;
-					break;
-				}
 				String nokkel = kortNr + ".txt";
 				Splitt splitt = new Splitt(nokkel);
 				File fil = splitt.getFile();
@@ -92,19 +89,18 @@ public class Main extends Application {
 						root.getChildren().add(labels.get(i - 2));
 				}
 
-				primaryStage.setScene(scene);
-				primaryStage.show();
 
-			}
+				this.primaryStage.setScene(scene);
+				this.primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings("resource")
 	private static String lesKort() {
 		Scanner scanner = new Scanner(System.in);
 		String kortnr = scanner.next();
-		scanner.close();
 		return kortnr;
 	}
 
