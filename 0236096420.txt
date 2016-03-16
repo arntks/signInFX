@@ -1,10 +1,5 @@
 1#50
 3#6
-<<<<<<< HEAD
-2#1#Guroerkul
-2#2#bæsj
-=======
 2#1#Elgfare
 2#2#Veiarbeid
->>>>>>> dbf7dc3c88dd70af7b3bfdcccd01418d7a6c474f
 3#9
