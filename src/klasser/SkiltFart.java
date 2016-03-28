@@ -7,6 +7,10 @@ public class SkiltFart extends Skilt{
 		this.skiltnr = skiltnr;
 		this.skiltgruppe = 1;
 	}
+	
+	public int getSkiltnr(){
+		return skiltnr;
+	}
 
 
 }

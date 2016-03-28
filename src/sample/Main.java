@@ -24,14 +24,17 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Scanner scanner = new Scanner(System.in);
 		String kortnr = scanner.next();
-//		while (!(kortnr = scanner.nextLine()).contentEquals("exit")) {
-//			makeScene(kortnr);
-//		}
-		makeScene(kortnr);
+		//Stage primaryStage2 = new Stage();
+		while (!(kortnr.equals("exit"))) {
+			Stage primaryStage2 = new Stage();
+			makeScene(kortnr, scanner, primaryStage2);
+			kortnr = scanner.next();
+		}
+		//makeScene(kortnr, scanner, primaryStage2);
 		Scanner scanner2 = new Scanner(System.in);
 	}
 	
-	public void makeScene (String kortNr) {
+	public void makeScene (String kortNr, Scanner scanner, Stage primaryStage) {
 		try {
 				String nokkel = kortNr + ".txt";
 				Splitt splitt = new Splitt(nokkel);
@@ -75,7 +78,7 @@ public class Main extends Application {
 					throw new IllegalArgumentException();
 				}
 
-				UpdateSpeed us = new UpdateSpeed();
+				UpdateSpeed us = new UpdateSpeed(skiltGruppe.get(0));
 				fartLabels = us.makeLabel();
 				root.getChildren().addAll(fartLabels.get(0), fartLabels.get(1));
 
@@ -90,8 +93,11 @@ public class Main extends Application {
 				}
 
 
-				this.primaryStage.setScene(scene);
-				this.primaryStage.show();
+				primaryStage.setScene(scene);
+				primaryStage.show();
+				/*if(scanner.hasNext()){
+					System.exit(1);
+				}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
