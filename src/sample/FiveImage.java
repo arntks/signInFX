@@ -3,6 +3,7 @@ package sample;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -48,11 +49,11 @@ public class FiveImage {
 			}else if(i==2){
 				h=87;
 				b=100;
-				y=167;
+				y=173;
 			}else{
 				h=87;
 				b=100;
-				y=277;
+				y=283;
 			}
 			
 			
@@ -75,26 +76,37 @@ public class FiveImage {
 		
 		for(int i=2; i<5; i++){
 			if(i==2){
-				y = 255;
+				y = 259;
 			}else{
-				y= 363;
+				y= 369;
 			}
 			Label label = new Label();
+			label.setPrefSize(150, 15);
 			label.setText(textList.get(i));
-			label.setFont(new Font("Arial",20));
-			label.setLayoutX(numList.get(i));
+			label.setFont(new Font("Arial",18));
+			label.setLayoutX(numList.get(i)-25);
 			label.setLayoutY(y);
 			label.setTextFill(Color.web("#F8F8F8"));
+			label.setAlignment(Pos.CENTER);
+			
+			DropShadow skygge = new DropShadow();
+			skygge.setColor(Color.web("#000000"));
+			skygge.setRadius(15);
+			label.setEffect(skygge);
+			
 			labels.add(label);
+			
+		
+		
 		}	
 
 	}
 	
-	public ArrayList<ImageView> getPictures(){
+	public ArrayList getPictures(){
 		return pictures;
 	}
 	
-	public ArrayList<Label> getLabels(){
+	public ArrayList getLabels(){
 		return labels;
 	}
 
