@@ -24,17 +24,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Scanner scanner = new Scanner(System.in);
 		String kortnr = scanner.next();
-		//Stage primaryStage2 = new Stage();
-		while (!(kortnr.equals("exit"))) {
-			Stage primaryStage2 = new Stage();
-			makeScene(kortnr, scanner, primaryStage2);
+		/*while (!(kortnr.equals("exit"))) {
+			makeScene(kortnr);
 			kortnr = scanner.next();
-		}
-		//makeScene(kortnr, scanner, primaryStage2);
+		}*/
+		makeScene(kortnr);
 		Scanner scanner2 = new Scanner(System.in);
 	}
 	
-	public void makeScene (String kortNr, Scanner scanner, Stage primaryStage) {
+	public void makeScene (String kortNr) {
 		try {
 				String nokkel = kortNr + ".txt";
 				Splitt splitt = new Splitt(nokkel);
@@ -93,11 +91,9 @@ public class Main extends Application {
 				}
 
 
-				primaryStage.setScene(scene);
-				primaryStage.show();
-				/*if(scanner.hasNext()){
-					System.exit(1);
-				}*/
+				this.primaryStage.setScene(scene);
+				this.primaryStage.show();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
