@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import klasser.Skilt;
 
@@ -49,6 +51,11 @@ public class TwoImage {
 			pictures.get(i).setFitWidth(b);
 			pictures.get(i).setX(numList.get(i));
 			pictures.get(i).setY(y);
+			
+			DropShadow skygge = new DropShadow();
+			skygge.setColor(Color.web("#000000"));
+			skygge.setRadius(30);
+			pictures.get(i).setEffect(skygge);
 			
 		}
 	}

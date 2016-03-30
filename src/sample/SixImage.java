@@ -3,9 +3,12 @@ package sample;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import klasser.Skilt;
 
@@ -47,6 +50,11 @@ public class SixImage {
 			pictures.get(i).setFitWidth(b);
 			pictures.get(i).setX(numList.get(i));
 			pictures.get(i).setY(y);
+			
+			DropShadow skygge = new DropShadow();
+			skygge.setColor(Color.web("#000000"));
+			skygge.setRadius(30);
+			pictures.get(i).setEffect(skygge);
 		}
 	}
 	
@@ -55,10 +63,18 @@ public class SixImage {
 		
 		for(int i=2; i<6; i++){
 			
+			labels.get(i-2).setPrefSize(150, 15);
 			labels.get(i-2).setText(textList.get(i));
-			labels.get(i-2).setFont(new Font("Arial",30));
-			labels.get(i-2).setLayoutX(numList.get(i));
+			labels.get(i-2).setFont(new Font("Arial",18));
+			labels.get(i-2).setLayoutX(numList.get(i)-25);
 			labels.get(i-2).setLayoutY(y);
+			labels.get(i-2).setTextFill(Color.web("#F8F8F8"));
+			labels.get(i-2).setAlignment(Pos.CENTER);
+			
+			DropShadow skygge = new DropShadow();
+			skygge.setColor(Color.web("#000000"));
+			skygge.setRadius(15);
+			labels.get(i-2).setEffect(skygge);
 		}	
 	}
 	
