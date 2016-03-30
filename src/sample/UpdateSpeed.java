@@ -24,17 +24,14 @@ public class UpdateSpeed {
 	int i =22;
 	int speedLimit;
 	Skilt fartskilt;
+	String speed;
 	
 	Timer timer = new java.util.Timer();
 	private ArrayList<Label> labels = new ArrayList<Label>();
 	
-	public UpdateSpeed(Skilt skiltFart){
-		fartskilt = skiltFart;
-		speedLimit = fartskilt.getSkiltnr();
-	}
-	
 	
 	public ArrayList<Label> makeLabel() throws FileNotFoundException{
+		//Kjører tilfeldig fartsfil. Her må det legges til riktig fartsfil, og selvfølgelig formateres riktig.
 		BufferedReader br = new BufferedReader(new FileReader(new File("fartsfil.txt")));
 		DropShadow skygge = new DropShadow();
 		skygge.setColor(Color.web("#000000"));
@@ -46,6 +43,7 @@ public class UpdateSpeed {
 		fartLabel.setLayoutX(310);
 		fartLabel.setLayoutY(37);
 		fartLabel.setEffect(skygge);
+		fartLabel.setTextFill(Color.web("#F8F8F8"));
 		
 		Label kmLabel = new Label();
 		kmLabel.setText("km/h");
@@ -61,16 +59,9 @@ public class UpdateSpeed {
 		    public void run() {
 		         Platform.runLater(new Runnable() {
 		            public void run() {
-		            	i++;
 		                try {
-		                	String speed = br.readLine();
-
-		                	if (speed != null){
-		                		fartLabel.setText(speed);
-								if(Integer.parseInt(speed) <= speedLimit)fartLabel.setTextFill(Color.web("#F8F8F8"));
-								else if(Integer.parseInt(speed)<= speedLimit+5) fartLabel.setTextFill(Color.web("FF6600"));
-								else fartLabel.setTextFill(Color.web("#CC0000"));	
-		                	}
+		                	speed = br.readLine();
+		                	fartLabel.setText(speed);
 						
 		                } catch (IOException e) {
 							e.printStackTrace();
@@ -81,6 +72,10 @@ public class UpdateSpeed {
 		}, 1000, 1000);
 		
 		return labels;
+	}
+	
+	public String retSpeed(){
+		return this.speed;
 	}
 	
 	public static void main(String[] args) {

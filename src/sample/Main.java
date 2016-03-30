@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,11 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 public class Main extends Application {
 	private ArrayList<ImageView> pictures = new ArrayList<ImageView>();
 	private ArrayList<Label> labels = new ArrayList<Label>();
-	private ArrayList<Label> fartLabels = new ArrayList<Label>();
+	private ArrayList<Label> speedLabels = new ArrayList<Label>();
 	private	Stage primaryStage = new Stage();
 	
 	ImageView imgView1 = new ImageView();
@@ -35,6 +38,8 @@ public class Main extends Application {
 	Label tekstLabel2 = new Label();
 	Label tekstLabel3 = new Label();
 	Label tekstLabel4 = new Label();
+	
+	Label speedLabel = new Label();
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -46,13 +51,13 @@ public class Main extends Application {
 		pictures.addAll(Arrays.asList(imgView1, imgView2, imgView3, imgView4, imgView5, imgView6));
 		labels.addAll(Arrays.asList(tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4));
 		
-		UpdateSpeed us = new UpdateSpeed(skiltGruppe.get(0));
-		fartLabels = us.makeLabel();
-		root.getChildren().addAll(fartLabels.get(0), fartLabels.get(1));
+		UpdateSpeed us = new UpdateSpeed();
+		speedLabels = us.makeLabel();
+		speedLabel = speedLabels.get(0);
 
-		TopLine topLine = new TopLine();
+		/*TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
-		root.getChildren().add(topLabel);
+		root.getChildren().add(topLabel);*/
 		
 			
 		Thread scannerReadThread = new Thread(() -> {
@@ -69,6 +74,29 @@ public class Main extends Application {
         	        		
         	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
         	        		
+        	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
+        	        		Skilt fartskilt = skiltGruppe.get(0);
+        	        		int speedLimit = fartskilt.getSkiltnr();
+        	        		
+        	        		Timer timer = new java.util.Timer();
+        	        		timer.schedule(new TimerTask() {
+        	        		    public void run() {
+        	        		         Platform.runLater(new Runnable() {
+        	        		            public void run() {
+        	        		                String speed = us.retSpeed();
+											if (speed != null){
+												
+												if(Integer.parseInt(speed) <= speedLimit)speedLabel.setTextFill(Color.web("#F8F8F8"));
+												else if(Integer.parseInt(speed)<= speedLimit+5) speedLabel.setTextFill(Color.web("FF6600"));
+												else speedLabel.setTextFill(Color.web("#CC0000"));
+											}
+        	        		            }
+        	        		        });
+        	        		    }
+        	        		}, 1000, 10);
+        	        		
+        	        		
+        	        		//Oppdaterer hvilken skiltsone man er i.
         	        		if (skiltGruppe.size() == 2) {
         						TwoImage mp = new TwoImage(skiltGruppe, pictures, labels);
         						mp.makeP();
@@ -124,6 +152,7 @@ public class Main extends Application {
 		
 		root.getChildren().addAll(imgView1, imgView2, imgView3, imgView4, imgView5, imgView6);
 		root.getChildren().addAll(tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4);
+		root.getChildren().addAll(speedLabel, speedLabels.get(1));
 		
 		this.primaryStage.setScene(scene);
 		this.primaryStage.show();
@@ -137,6 +166,7 @@ public class Main extends Application {
 		return kortnr;
 	}
 	
+	//Sørger for at teksten blir satt riktig, og dersom man oppdaterer blir tidligere tekster fjernet.
 	public void addText(int i, ArrayList <Label> labels){
 		if(i==2){
 			tekstLabel1.setText(null);
@@ -170,6 +200,7 @@ public class Main extends Application {
 		}
 	}
 	
+	//Sørger for at bildet blir satt riktig, og dersom man oppdaterer blir tidligere bilder fjernet.
 	public void addImage(int i, ArrayList<ImageView> pictures ){
 		if(i==2){
 			imgView1 = pictures.get(0);
