@@ -18,12 +18,13 @@ public class ThreeImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public ThreeImage(ArrayList<Skilt> skiltGruppe){
+	public ThreeImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
 		numList.addAll(Arrays.asList(60 , 60 , 380));
 		for(int i=0; i<3; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
+		this.pictures = pictures;
 	}
 	
 	public void makeP(){
@@ -34,8 +35,7 @@ public class ThreeImage {
 		int y=10;
 		
 		for(int i=0; i<3; i++){
-			ImageView imgView = new ImageView();
-			imgView.setImage(imgList.get(i));
+			pictures.get(i).setImage(imgList.get(i));
 			if(i== 0){
 				h=150;
 				b=150;
@@ -50,12 +50,11 @@ public class ThreeImage {
 				y=250;
 				
 			}
-			imgView.setFitHeight(h);
-			imgView.setFitWidth(b);
-			imgView.setX(numList.get(i));
-			imgView.setY(y);
+			pictures.get(i).setFitHeight(h);
+			pictures.get(i).setFitWidth(b);
+			pictures.get(i).setX(numList.get(i));
+			pictures.get(i).setY(y);
 			
-			pictures.add(imgView);
 		}
 	}
 	

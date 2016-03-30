@@ -18,12 +18,13 @@ public class TwoImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public TwoImage(ArrayList<Skilt> skiltGruppe){
+	public TwoImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
 		numList.addAll(Arrays.asList(0,150));
 		for(int i=0; i<2; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
+		this.pictures = pictures;
 	}
 	
 	public void makeP(){
@@ -34,8 +35,8 @@ public class TwoImage {
 		int y=10;
 		
 		for(int i=0; i<2; i++){
-			ImageView imgView = new ImageView();
-			imgView.setImage(imgList.get(i));
+			pictures.get(i).setImage(imgList.get(i));
+			
 			if(i<= 1){
 				h=200;
 				b=200;
@@ -43,12 +44,11 @@ public class TwoImage {
 				h=100;
 				b=100;
 			}
-			imgView.setFitHeight(h);
-			imgView.setFitWidth(b);
-			imgView.setX(numList.get(i));
-			imgView.setY(y);
+			pictures.get(i).setFitHeight(h);
+			pictures.get(i).setFitWidth(b);
+			pictures.get(i).setX(numList.get(i));
+			pictures.get(i).setY(y);
 			
-			pictures.add(imgView);
 		}
 	}
 	
