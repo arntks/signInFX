@@ -18,13 +18,14 @@ public class TwoImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public TwoImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
+	public TwoImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
 		numList.addAll(Arrays.asList(0,150));
 		for(int i=0; i<2; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
 		this.pictures = pictures;
+		this.labels = labels;
 	}
 	
 	public void makeP(){

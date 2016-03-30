@@ -18,13 +18,14 @@ public class ThreeImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public ThreeImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
+	public ThreeImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
 		numList.addAll(Arrays.asList(60 , 60 , 380));
 		for(int i=0; i<3; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
 		this.pictures = pictures;
+		this.labels = labels;
 	}
 	
 	public void makeP(){
@@ -62,13 +63,13 @@ public class ThreeImage {
 		int y =170;
 		
 		for(int i=2; i<3; i++){
-			Label label = new Label();
-			label.setText(textList.get(i));
-			label.setFont(new Font("Arial",30));
-			label.setLayoutX(numList.get(i));
-			label.setLayoutY(y);
+		
+			labels.get(i).setText(textList.get(i));
+			labels.get(i).setFont(new Font("Arial",30));
+			labels.get(i).setLayoutX(numList.get(i));
+			labels.get(i).setLayoutY(y);
 			
-			labels.add(label);
+
 		}	
 	}
 	

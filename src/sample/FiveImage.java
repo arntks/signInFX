@@ -20,14 +20,14 @@ public class FiveImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public FiveImage(ArrayList<Skilt> skiltGruppe){
+	public FiveImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
 		numList.addAll(Arrays.asList(60,60,385,302,468));
 		for(int i=0; i<5; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
-		
-		
+		this.pictures = pictures;
+		this.labels = labels;
 	}
 	
 	public void makeP(){
@@ -36,8 +36,7 @@ public class FiveImage {
 		int y;
 		
 		for(int i=0; i<5; i++){
-			ImageView imgView = new ImageView();
-			imgView.setImage(imgList.get(i));
+			pictures.get(i).setImage(imgList.get(i));
 			if(i== 0){
 				h=150;
 				b=150;
@@ -57,17 +56,17 @@ public class FiveImage {
 			}
 			
 			
-			imgView.setFitHeight(h);
-			imgView.setFitWidth(b);
-			imgView.setX(numList.get(i));
-			imgView.setY(y);
+			pictures.get(i).setFitHeight(h);
+			pictures.get(i).setFitWidth(b);
+			pictures.get(i).setX(numList.get(i));
+			pictures.get(i).setY(y);
 			
 			DropShadow skygge = new DropShadow();
 			skygge.setColor(Color.web("#000000"));
 			skygge.setRadius(30);
-			imgView.setEffect(skygge);
+			pictures.get(i).setEffect(skygge);
 			
-			pictures.add(imgView);
+
 		}
 	}
 	
@@ -80,21 +79,19 @@ public class FiveImage {
 			}else{
 				y= 369;
 			}
-			Label label = new Label();
-			label.setPrefSize(150, 15);
-			label.setText(textList.get(i));
-			label.setFont(new Font("Arial",18));
-			label.setLayoutX(numList.get(i)-25);
-			label.setLayoutY(y);
-			label.setTextFill(Color.web("#F8F8F8"));
-			label.setAlignment(Pos.CENTER);
+			labels.get(i).setPrefSize(150, 15);
+			labels.get(i).setText(textList.get(i));
+			labels.get(i).setFont(new Font("Arial",18));
+			labels.get(i).setLayoutX(numList.get(i)-25);
+			labels.get(i).setLayoutY(y);
+			labels.get(i).setTextFill(Color.web("#F8F8F8"));
+			labels.get(i).setAlignment(Pos.CENTER);
 			
 			DropShadow skygge = new DropShadow();
 			skygge.setColor(Color.web("#000000"));
 			skygge.setRadius(15);
-			label.setEffect(skygge);
+			labels.get(i).setEffect(skygge);
 			
-			labels.add(label);
 			
 		
 		

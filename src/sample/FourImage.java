@@ -18,13 +18,14 @@ public class FourImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public FourImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
+	public FourImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
 		numList.addAll(Arrays.asList(60,60,300,450));
 		for(int i=0; i<4; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
 		this.pictures = pictures;
+		this.labels = labels;
 	}
 	
 	
@@ -61,13 +62,13 @@ public class FourImage {
 		int y =350;
 		
 		for(int i=2; i<4; i++){
-			Label label = new Label();
-			label.setText(textList.get(i));
-			label.setFont(new Font("Arial",30));
-			label.setLayoutX(numList.get(i));
-			label.setLayoutY(y);
 			
-			labels.add(label);
+			labels.get(i).setText(textList.get(i));
+			labels.get(i).setFont(new Font("Arial",30));
+			labels.get(i).setLayoutX(numList.get(i));
+			labels.get(i).setLayoutY(y);
+			
+	
 		}	
 	}
 	

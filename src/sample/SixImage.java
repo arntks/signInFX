@@ -17,13 +17,14 @@ public class SixImage {
 	private ArrayList <Image> imgList = new ArrayList <Image>();
 	private ArrayList <String> textList = new ArrayList <String>();
 	
-	public SixImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures){
+	public SixImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
 		numList.addAll(Arrays.asList(0,100,150,220,300,400));
 		for(int i=0; i<6; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
 		}
 		this.pictures = pictures;
+		this.labels = labels;
 		
 		
 	}
@@ -53,13 +54,11 @@ public class SixImage {
 		int y=170;
 		
 		for(int i=2; i<6; i++){
-			Label label = new Label();
-			label.setText(textList.get(i));
-			label.setFont(new Font("Arial",30));
-			label.setLayoutX(numList.get(i));
-			label.setLayoutY(y);
 			
-			labels.add(label);
+			labels.get(i).setText(textList.get(i));
+			labels.get(i).setFont(new Font("Arial",30));
+			labels.get(i).setLayoutX(numList.get(i));
+			labels.get(i).setLayoutY(y);
 		}	
 	}
 	
