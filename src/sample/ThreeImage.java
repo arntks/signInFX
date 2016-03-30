@@ -64,10 +64,10 @@ public class ThreeImage {
 		
 		for(int i=2; i<3; i++){
 		
-			labels.get(i).setText(textList.get(i));
-			labels.get(i).setFont(new Font("Arial",30));
-			labels.get(i).setLayoutX(numList.get(i));
-			labels.get(i).setLayoutY(y);
+			labels.get(i-2).setText(textList.get(i));
+			labels.get(i-2).setFont(new Font("Arial",30));
+			labels.get(i-2).setLayoutX(numList.get(i));
+			labels.get(i-2).setLayoutY(y);
 			
 
 		}	

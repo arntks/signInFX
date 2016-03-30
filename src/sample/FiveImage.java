@@ -79,18 +79,18 @@ public class FiveImage {
 			}else{
 				y= 369;
 			}
-			labels.get(i).setPrefSize(150, 15);
-			labels.get(i).setText(textList.get(i));
-			labels.get(i).setFont(new Font("Arial",18));
-			labels.get(i).setLayoutX(numList.get(i)-25);
-			labels.get(i).setLayoutY(y);
-			labels.get(i).setTextFill(Color.web("#F8F8F8"));
-			labels.get(i).setAlignment(Pos.CENTER);
+			labels.get(i-2).setPrefSize(150, 15);
+			labels.get(i-2).setText(textList.get(i));
+			labels.get(i-2).setFont(new Font("Arial",18));
+			labels.get(i-2).setLayoutX(numList.get(i)-25);
+			labels.get(i-2).setLayoutY(y);
+			labels.get(i-2).setTextFill(Color.web("#F8F8F8"));
+			labels.get(i-2).setAlignment(Pos.CENTER);
 			
 			DropShadow skygge = new DropShadow();
 			skygge.setColor(Color.web("#000000"));
 			skygge.setRadius(15);
-			labels.get(i).setEffect(skygge);
+			labels.get(i-2).setEffect(skygge);
 			
 			
 		
