@@ -5,4 +5,4 @@ Synne: 0236104773 - Pakke 4
 Guro:0236098634 - Pakke 1
 Hartvig:0236096420 - Pakke 7
 Arnt:0236105457 - Pakke 5
-Anders: - Pakke 6
+Anders:0241714974 - Pakke 6

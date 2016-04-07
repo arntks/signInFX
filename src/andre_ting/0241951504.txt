@@ -1,5 +1,5 @@
 Riksvei 7
 1#80
 3#6
-2#1#Stor elgfare
+2#1#Elgfare
 3#1
