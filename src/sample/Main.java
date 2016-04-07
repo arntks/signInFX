@@ -67,7 +67,7 @@ public class Main extends Application {
                 	
                     Platform.runLater(new Runnable() {
         	            public void run() {
-        	            	String nokkel = kortNr + ".txt";
+        	            	String nokkel = "src/andre_ting/"+kortNr+".txt";
         	        		Splitt splitt = new Splitt(nokkel);
         	        		File fil = splitt.getFile();
         	        		splitt.dele(fil);
