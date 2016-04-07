@@ -22,7 +22,7 @@ public class ThreeImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public ThreeImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
-		numList.addAll(Arrays.asList(60 , 60 , 380));
+		numList.addAll(Arrays.asList(60 , 60 , 370));
 		for(int i=0; i<3; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -33,10 +33,9 @@ public class ThreeImage {
 	
 	public void makeP(){
 		
-		int h=150;
-		int b=150;
-		int x=100;
-		int y=10;
+		int h;
+		int b;
+		int y;
 		
 		for(int i=0; i<3; i++){
 			pictures.get(i).setImage(imgList.get(i));
@@ -49,9 +48,9 @@ public class ThreeImage {
 				b=150;
 				y=225;
 			} else {
-				h=100;
-				b=100;
-				y=250;
+				h=105;
+				b=120;
+				y=230;
 				
 			}
 			pictures.get(i).setFitHeight(h);
@@ -68,14 +67,14 @@ public class ThreeImage {
 	}
 	
 	public void makeT(){
-		int y =170;
+		int y =335;
 		
 		for(int i=2; i<3; i++){
 		
 			labels.get(i-2).setPrefSize(150, 15);
 			labels.get(i-2).setText(textList.get(i));
-			labels.get(i-2).setFont(new Font("Arial",18));
-			labels.get(i-2).setLayoutX(numList.get(i)-25);
+			labels.get(i-2).setFont(new Font("Arial",22));
+			labels.get(i-2).setLayoutX(numList.get(i)-20);
 			labels.get(i-2).setLayoutY(y);
 			labels.get(i-2).setTextFill(Color.web("#F8F8F8"));
 			labels.get(i-2).setAlignment(Pos.CENTER);
