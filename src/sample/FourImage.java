@@ -49,9 +49,9 @@ public class FourImage {
 				b=150;
 				y=230;
 			}else{
-				h=90;
-				b=90;
-				y=260;
+				h=87;
+				b=100;
+				y=230;
 			}
 			pictures.get(i).setFitHeight(h);
 			pictures.get(i).setFitWidth(b);
@@ -67,7 +67,7 @@ public class FourImage {
 	}
 	
 	public void makeT(){
-		int y =350;
+		int y =320;
 		
 		for(int i=2; i<4; i++){
 			

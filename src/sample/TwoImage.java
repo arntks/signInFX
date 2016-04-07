@@ -21,7 +21,7 @@ public class TwoImage {
 	private ArrayList <String> textList = new ArrayList <String>();
 	
 	public TwoImage(ArrayList<Skilt> skiltGruppe, ArrayList<ImageView> pictures, ArrayList<Label> labels){
-		numList.addAll(Arrays.asList(0,150));
+		numList.addAll(Arrays.asList(60,60));
 		for(int i=0; i<2; i++){
 			imgList.add(skiltGruppe.get(i).hentBilde());
 			textList.add(skiltGruppe.get(i).hentTekst());
@@ -32,20 +32,21 @@ public class TwoImage {
 	
 	public void makeP(){
 		
-		int h=150;
-		int b=150;
-		int x=100;
-		int y=10;
+		int h;
+		int b;
+		int y;
 		
 		for(int i=0; i<2; i++){
 			pictures.get(i).setImage(imgList.get(i));
 			
-			if(i<= 1){
-				h=200;
-				b=200;
+			if(i< 1){
+				h=150;
+				b=150;
+				y= 60;
 			}else{
-				h=100;
-				b=100;
+				h=150;
+				b=150;
+				y=230;
 			}
 			pictures.get(i).setFitHeight(h);
 			pictures.get(i).setFitWidth(b);
