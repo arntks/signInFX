@@ -10,7 +10,6 @@ public class TopLine {
 	
 	public Label makeTopLabel(){
 		Label topLabel = new Label();
-		topLabel.setText("E 18");
 		topLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		topLabel.setAlignment(Pos.CENTER);
 		topLabel.setPrefHeight(40);

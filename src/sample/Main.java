@@ -55,9 +55,9 @@ public class Main extends Application {
 		speedLabels = us.makeLabel();
 		speedLabel = speedLabels.get(0);
 
-		/*TopLine topLine = new TopLine();
+		TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
-		root.getChildren().add(topLabel);*/
+		root.getChildren().add(topLabel);
 		
 			
 		Thread scannerReadThread = new Thread(() -> {
@@ -73,6 +73,8 @@ public class Main extends Application {
         	        		splitt.dele(fil);
         	        		
         	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
+        	        		String topptekst = splitt.getTopptekst();
+        	        		topLabel.setText(topptekst);
         	        		
         	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
         	        		Skilt fartskilt = skiltGruppe.get(0);
