@@ -62,9 +62,7 @@ public class Main extends Application {
 		TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
 		root.getChildren().add(topLabel);
-		/*String musicFile = "lyd.mp3";     // For example
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);*/
+		
 
 		
 		
@@ -85,6 +83,9 @@ public class Main extends Application {
         	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
         	        		String topptekst = splitt.getTopptekst();
         	        		topLabel.setText(topptekst);
+        	        		String musicFile = "lyd.mp3";     // For example
+        	        		Media sound = new Media(new File(musicFile).toURI().toString());
+        	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
         	        		
         	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
         	        		Skilt fartskilt = skiltGruppe.get(0);
@@ -109,7 +110,7 @@ public class Main extends Application {
 												else {
 													speedLabel.setTextFill(Color.web("#CC0000"));
 			
-													//mediaPlayer.play();
+													mediaPlayer.play();
 													
 												}
 											}
@@ -133,6 +134,7 @@ public class Main extends Application {
         						pictures = mp.getPictures();
         						labels = mp.getLabels();
         						addImage(3,pictures);
+        						addText(3,labels);
         					} else if (skiltGruppe.size() == 4) {
         						FourImage mp = new FourImage(skiltGruppe,pictures, labels);
         						mp.makeP();
@@ -140,6 +142,7 @@ public class Main extends Application {
         						pictures = mp.getPictures();
         						labels = mp.getLabels();
         						addImage(4,pictures);
+        						addText(4,labels);
         					} else if (skiltGruppe.size() == 5) {
         						FiveImage mp = new FiveImage(skiltGruppe, pictures, labels);
         						mp.makeP();
@@ -147,6 +150,7 @@ public class Main extends Application {
         						pictures = mp.getPictures();
         						labels = mp.getLabels();
         						addImage(5,pictures);
+        						addText(5,labels);
         						
         					} else if (skiltGruppe.size() == 6) {
         						SixImage mp = new SixImage(skiltGruppe, pictures, labels);
@@ -155,6 +159,7 @@ public class Main extends Application {
         						pictures = mp.getPictures();
         						labels = mp.getLabels();
         						addImage(6,pictures);
+        						addText(6,labels);
         					} else {
         						throw new IllegalArgumentException();
         					}
