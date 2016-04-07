@@ -32,7 +32,7 @@ public class UpdateSpeed {
 	
 	public ArrayList<Label> makeLabel() throws FileNotFoundException{
 		//Kjører tilfeldig fartsfil. Her må det legges til riktig fartsfil, og selvfølgelig formateres riktig.
-		BufferedReader br = new BufferedReader(new FileReader(new File("fartsfil.txt")));
+		BufferedReader br = new BufferedReader(new FileReader(new File("speeds.txt")));
 		DropShadow skygge = new DropShadow();
 		skygge.setColor(Color.web("#000000"));
 		skygge.setRadius(20);
@@ -69,7 +69,7 @@ public class UpdateSpeed {
 		            }
 		        });
 		    }
-		}, 1000, 1000);
+		}, 1000, 100);
 		
 		return labels;
 	}
