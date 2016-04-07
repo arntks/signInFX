@@ -20,6 +20,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 
 public class Main extends Application {
 	private ArrayList<ImageView> pictures = new ArrayList<ImageView>();
@@ -40,6 +43,7 @@ public class Main extends Application {
 	Label tekstLabel4 = new Label();
 	
 	Label speedLabel = new Label();
+	int speedLimit;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -58,6 +62,11 @@ public class Main extends Application {
 		TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
 		root.getChildren().add(topLabel);
+		/*String musicFile = "lyd.mp3";     // For example
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);*/
+
+		
 		
 			
 		Thread scannerReadThread = new Thread(() -> {
@@ -71,6 +80,7 @@ public class Main extends Application {
         	        		Splitt splitt = new Splitt(nokkel);
         	        		File fil = splitt.getFile();
         	        		splitt.dele(fil);
+
         	        		
         	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
         	        		String topptekst = splitt.getTopptekst();
@@ -78,7 +88,7 @@ public class Main extends Application {
         	        		
         	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
         	        		Skilt fartskilt = skiltGruppe.get(0);
-        	        		int speedLimit = fartskilt.getSkiltnr();
+        	        		speedLimit = fartskilt.getSkiltnr();
         	        		
         	        		Timer timer = new java.util.Timer();
         	        		timer.schedule(new TimerTask() {
@@ -88,9 +98,20 @@ public class Main extends Application {
         	        		                String speed = us.retSpeed();
 											if (speed != null){
 												
-												if(Integer.parseInt(speed) <= speedLimit)speedLabel.setTextFill(Color.web("#F8F8F8"));
-												else if(Integer.parseInt(speed)<= speedLimit+5) speedLabel.setTextFill(Color.web("FF6600"));
-												else speedLabel.setTextFill(Color.web("#CC0000"));
+												if(Integer.parseInt(speed) <= speedLimit){
+													speedLabel.setTextFill(Color.web("#F8F8F8"));
+													
+												}
+												else if(Integer.parseInt(speed)<= speedLimit*1.15){
+													speedLabel.setTextFill(Color.web("FF6600"));
+													
+												}
+												else {
+													speedLabel.setTextFill(Color.web("#CC0000"));
+			
+													//mediaPlayer.play();
+													
+												}
 											}
         	        		            }
         	        		        });

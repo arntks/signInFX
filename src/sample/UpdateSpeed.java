@@ -69,7 +69,7 @@ public class UpdateSpeed {
 		            }
 		        });
 		    }
-		}, 1000, 100);
+		}, 1000, 10);
 		
 		return labels;
 	}
