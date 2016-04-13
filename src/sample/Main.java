@@ -101,10 +101,11 @@ public class Main extends Application {
 												
 												if(Integer.parseInt(speed) <= speedLimit){
 													speedLabel.setTextFill(Color.web("#F8F8F8"));
-													
+													mediaPlayer.stop();
 												}
 												else if(Integer.parseInt(speed)<= speedLimit*1.15){
 													speedLabel.setTextFill(Color.web("FF6600"));
+													mediaPlayer.stop();
 													
 												}
 												else {
