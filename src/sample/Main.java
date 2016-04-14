@@ -44,6 +44,7 @@ public class Main extends Application {
 	
 	Label speedLabel = new Label();
 	int speedLimit;
+	int correctSpeedLimit;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -58,129 +59,14 @@ public class Main extends Application {
 		UpdateSpeed us = new UpdateSpeed();
 		speedLabels = us.makeLabel();
 		speedLabel = speedLabels.get(0);
-
+		
 		TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
-		root.getChildren().add(topLabel);
 		
-
-		
-		
-			
-		Thread scannerReadThread = new Thread(() -> {
-            try (Scanner scanner = new Scanner(System.in)) {
-                while (scanner.hasNextLine()) {
-                	String kortNr = scanner.next();
-                	
-                    Platform.runLater(new Runnable() {
-        	            public void run() {
-        	            	String nokkel = "src/andre_ting/"+kortNr+".txt";
-        	        		Splitt splitt = new Splitt(nokkel);
-        	        		File fil = splitt.getFile();
-        	        		splitt.dele(fil);
-
-        	        		
-        	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
-        	        		String topptekst = splitt.getTopptekst();
-        	        		topLabel.setText(topptekst);
-        	        		String musicFile = "lyd.mp3";     // For example
-        	        		Media sound = new Media(new File(musicFile).toURI().toString());
-        	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        	        		
-        	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
-        	        		Skilt fartskilt = skiltGruppe.get(0);
-        	        		speedLimit = fartskilt.getSkiltnr();
-        	        		
-        	        		Timer timer = new java.util.Timer();
-        	        		timer.schedule(new TimerTask() {
-        	        		    public void run() {
-        	        		         Platform.runLater(new Runnable() {
-        	        		            public void run() {
-        	        		                String speed = us.retSpeed();
-											if (speed != null){
-												
-												if(Integer.parseInt(speed) <= speedLimit){
-													speedLabel.setTextFill(Color.web("#F8F8F8"));
-													mediaPlayer.stop();
-												}
-												else if(Integer.parseInt(speed)<= speedLimit*1.15){
-													speedLabel.setTextFill(Color.web("FF6600"));
-													mediaPlayer.stop();
-													
-												}
-												else {
-													speedLabel.setTextFill(Color.web("#CC0000"));
-			
-													mediaPlayer.play();
-													
-												}
-											}
-        	        		            }
-        	        		        });
-        	        		    }
-        	        		}, 1000, 10);
-        	        		
-        	        		
-        	        		//Oppdaterer hvilken skiltsone man er i.
-        	        		if (skiltGruppe.size() == 2) {
-        						TwoImage mp = new TwoImage(skiltGruppe, pictures, labels);
-        						mp.makeP();
-        						pictures = mp.getPictures();
-        						addImage(2,pictures);
-        						addText(2,labels);
-        					} else if (skiltGruppe.size() == 3) {
-        						ThreeImage mp = new ThreeImage(skiltGruppe, pictures, labels);
-        						mp.makeP();
-        						mp.makeT();
-        						pictures = mp.getPictures();
-        						labels = mp.getLabels();
-        						addImage(3,pictures);
-        						addText(3,labels);
-        					} else if (skiltGruppe.size() == 4) {
-        						FourImage mp = new FourImage(skiltGruppe,pictures, labels);
-        						mp.makeP();
-        						mp.makeT();
-        						pictures = mp.getPictures();
-        						labels = mp.getLabels();
-        						addImage(4,pictures);
-        						addText(4,labels);
-        					} else if (skiltGruppe.size() == 5) {
-        						FiveImage mp = new FiveImage(skiltGruppe, pictures, labels);
-        						mp.makeP();
-        						mp.makeT();
-        						pictures = mp.getPictures();
-        						labels = mp.getLabels();
-        						addImage(5,pictures);
-        						addText(5,labels);
-        						
-        					} else if (skiltGruppe.size() == 6) {
-        						SixImage mp = new SixImage(skiltGruppe, pictures, labels);
-        						mp.makeP();
-        						mp.makeT();
-        						pictures = mp.getPictures();
-        						labels = mp.getLabels();
-        						addImage(6,pictures);
-        						addText(6,labels);
-        					} else {
-        						throw new IllegalArgumentException();
-        					}
-        					
-        					
-        					
-
-        	            }
-        	        });
-                }
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-        });
-		scannerReadThread.setDaemon(true);
-        scannerReadThread.start();
-      
+		makeThread(topLabel, us); // Lager thread slik at man oppdatere GUI-en kontinuerlig.
 		
 		root.getChildren().addAll(imgView1, imgView2, imgView3, imgView4, imgView5, imgView6);
-		root.getChildren().addAll(tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4);
+		root.getChildren().addAll(topLabel,tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4);
 		root.getChildren().addAll(speedLabel, speedLabels.get(1));
 		
 		this.primaryStage.setScene(scene);
@@ -193,6 +79,122 @@ public class Main extends Application {
 		Scanner scanner = new Scanner(System.in);
 		String kortnr = scanner.next();
 		return kortnr;
+	}
+	
+	public void makeThread(Label topLabel, UpdateSpeed us){
+		Thread scannerReadThread = new Thread(() -> {
+            try (Scanner scanner = new Scanner(System.in)) {
+                while (scanner.hasNextLine()) {
+                	String kortNr = scanner.next();
+                	
+                    Platform.runLater(new Runnable() {
+        	            public void run() {
+        	            	String nokkel = "src/andre_ting/"+kortNr+".txt";
+        	        		Splitt splitt = new Splitt(nokkel);
+        	        		File fil = splitt.getFile();
+        	        		splitt.dele(fil);
+
+        	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
+        	        		String topptekst = splitt.getTopptekst();
+        	        		topLabel.setText(topptekst);
+        	        		String musicFile = "lyd.mp3";     // For example
+        	        		Media sound = new Media(new File(musicFile).toURI().toString());
+        	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        	        		
+        	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
+        	        		Skilt fartskilt = skiltGruppe.get(0);
+        	        		speedLimit = fartskilt.getSkiltnr();
+        	        		updateColore(fartskilt, speedLimit, mediaPlayer, us);
+        	        		updateZone(skiltGruppe);	
+        					
+        	            }
+        	        });
+                }
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        });
+		scannerReadThread.setDaemon(true);
+        scannerReadThread.start();
+	}
+	
+	public void updateZone(ArrayList skiltGruppe){
+		//Oppdaterer hvilken skiltsone man er i.
+		if (skiltGruppe.size() == 2) {
+			TwoImage mp = new TwoImage(skiltGruppe, pictures, labels);
+			mp.makeP();
+			pictures = mp.getPictures();
+			addImage(2,pictures);
+			addText(2,labels);
+		} else if (skiltGruppe.size() == 3) {
+			ThreeImage mp = new ThreeImage(skiltGruppe, pictures, labels);
+			mp.makeP();
+			mp.makeT();
+			pictures = mp.getPictures();
+			labels = mp.getLabels();
+			addImage(3,pictures);
+			addText(3,labels);
+		} else if (skiltGruppe.size() == 4) {
+			FourImage mp = new FourImage(skiltGruppe,pictures, labels);
+			mp.makeP();
+			mp.makeT();
+			pictures = mp.getPictures();
+			labels = mp.getLabels();
+			addImage(4,pictures);
+			addText(4,labels);
+		} else if (skiltGruppe.size() == 5) {
+			FiveImage mp = new FiveImage(skiltGruppe, pictures, labels);
+			mp.makeP();
+			mp.makeT();
+			pictures = mp.getPictures();
+			labels = mp.getLabels();
+			addImage(5,pictures);
+			addText(5,labels);
+			
+		} else if (skiltGruppe.size() == 6) {
+			SixImage mp = new SixImage(skiltGruppe, pictures, labels);
+			mp.makeP();
+			mp.makeT();
+			pictures = mp.getPictures();
+			labels = mp.getLabels();
+			addImage(6,pictures);
+			addText(6,labels);
+		} else {
+			throw new IllegalArgumentException();
+		}
+		
+	}
+	
+	public void updateColore(Skilt fartskilt, int speedLimit, MediaPlayer mediaPlayer, UpdateSpeed us){
+		correctSpeedLimit = speedLimit;
+		Timer timer = new java.util.Timer();
+		timer.schedule(new TimerTask() {
+		    public void run() {
+		         Platform.runLater(new Runnable() {
+		            public void run() {
+		                String speed = us.retSpeed();
+						if (speed != null){
+							
+							if(Integer.parseInt(speed) <= correctSpeedLimit){
+								speedLabel.setTextFill(Color.web("#F8F8F8"));
+								mediaPlayer.stop();
+							}
+							else if(Integer.parseInt(speed)<= correctSpeedLimit*1.15){
+								speedLabel.setTextFill(Color.web("FF6600"));
+								mediaPlayer.stop();
+								
+							}
+							else {
+								speedLabel.setTextFill(Color.web("#CC0000"));
+
+								mediaPlayer.play();
+								
+							}
+						}
+		            }
+		        });
+		    }
+		}, 1000, 10);
 	}
 	
 	//Sørger for at teksten blir satt riktig, og dersom man oppdaterer blir tidligere tekster fjernet.
@@ -274,7 +276,6 @@ public class Main extends Application {
 		}
 	}
 	
-
 	public static void main(String[] args) {
 		launch(args);
 	}
