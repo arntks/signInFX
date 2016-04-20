@@ -97,7 +97,7 @@ public class Main extends Application {
         	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
         	        		String topptekst = splitt.getTopptekst();
         	        		topLabel.setText(topptekst);
-        	        		String musicFile = "src/andre_ting/"+"lyd.mp3";     // For example
+        	        		String musicFile = "src/andre_ting/"+"Alarm.mp3";     // For example
         	        		Media sound = new Media(new File(musicFile).toURI().toString());
         	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
         	        		
