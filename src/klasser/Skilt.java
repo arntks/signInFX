@@ -24,7 +24,7 @@ public abstract class Skilt {
     }
 
     public Image hentBilde() {
-        //metode som henter ut bilde basert pÃ¥ skiltnr og gruppe
+        //metode som henter ut bilde basert på skiltnr og gruppe
         String imageUrl;
         StringBuilder sb = new StringBuilder("img/" + this.getSkiltgruppe() + "_" + this.getSkiltnr() + ".png");
         imageUrl = sb.toString();
