@@ -101,6 +101,7 @@ public class Main extends Application {
         	        		Media sound = new Media(new File(musicFile).toURI().toString());
         	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
         	        		
+        	        		
         	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
         	        		Skilt fartskilt = skiltGruppe.get(0);
         	        		speedLimit = fartskilt.getSkiltnr();
@@ -165,7 +166,7 @@ public class Main extends Application {
 		
 	}
 	
-	public void updateColore(Skilt fartskilt, int speedLimit, MediaPlayer mediaPlayer, UpdateSpeed us){
+	public void updateColore(Skilt fartskilt, int speedLimit,MediaPlayer mediaPlayer, UpdateSpeed us){
 		correctSpeedLimit = speedLimit;
 		Timer timer = new java.util.Timer();
 		timer.schedule(new TimerTask() {
