@@ -46,7 +46,7 @@ public class UpdateSpeed {
 		fartLabel.setTextFill(Color.web("#F8F8F8"));
 		
 		Label kmLabel = new Label();
-		kmLabel.setText("km/h");
+		kmLabel.setText("km/t");
 		kmLabel.setFont(new Font("Arial",50));
 		kmLabel.setLayoutX(450);
 		kmLabel.setLayoutY(102);

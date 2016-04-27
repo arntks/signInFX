@@ -7,15 +7,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.net.*;
+import java.io.*;
+import java.util.*;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import klasser.Skilt;
+import klasser.SkiltFart;
 import klasser.Splitt;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -43,7 +49,10 @@ public class Main extends Application {
 	Label tekstLabel4 = new Label();
 	
 	Label speedLabel = new Label();
+	@FXML TextField input_text = new TextField();
 	int speedLimit;
+	ArrayList<Skilt> skiltGruppe;
+	
 	int correctSpeedLimit;
 
 	@Override
@@ -53,12 +62,11 @@ public class Main extends Application {
 		Scene scene = new Scene(root, 600, 400);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
-		pictures.addAll(Arrays.asList(imgView1, imgView2, imgView3, imgView4, imgView5, imgView6));
-		labels.addAll(Arrays.asList(tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4));
 		
 		UpdateSpeed us = new UpdateSpeed();
 		speedLabels = us.makeLabel();
 		speedLabel = speedLabels.get(0);
+		
 		
 		TopLine topLine = new TopLine();
 		Label topLabel = topLine.makeTopLabel();
@@ -71,6 +79,8 @@ public class Main extends Application {
 		
 		this.primaryStage.setScene(scene);
 		this.primaryStage.show();
+		
+		input_text.requestFocus();
 
 	}
 	
@@ -82,31 +92,19 @@ public class Main extends Application {
 	}
 	
 	public void makeThread(Label topLabel, UpdateSpeed us){
+
 		Thread scannerReadThread = new Thread(() -> {
             try (Scanner scanner = new Scanner(System.in)) {
                 while (scanner.hasNextLine()) {
                 	String kortNr = scanner.next();
-                	
+                	input_text.requestFocus();
                     Platform.runLater(new Runnable() {
         	            public void run() {
-        	            	String nokkel = "src/andre_ting/"+kortNr+".txt";
-        	        		Splitt splitt = new Splitt(nokkel);
-        	        		File fil = splitt.getFile();
-        	        		splitt.dele(fil);
-
-        	        		ArrayList<Skilt> skiltGruppe = splitt.getSkiltGruppe();
-        	        		String topptekst = splitt.getTopptekst();
-        	        		topLabel.setText(topptekst);
-        	        		String musicFile = "src/andre_ting/"+"Alarm.mp3";     // For example
-        	        		Media sound = new Media(new File(musicFile).toURI().toString());
-        	        		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        	        		
-        	        		
+        	            	  	        		
         	        		//Oppdatering av farge på hastigheten sammenlignet med hvilken sone man er i.
-        	        		Skilt fartskilt = skiltGruppe.get(0);
-        	        		speedLimit = fartskilt.getSkiltnr();
-        	        		updateColore(fartskilt, speedLimit, mediaPlayer, us);
-        	        		updateZone(skiltGruppe);	
+
+        	        		updateColore(us);
+        	        		updateZone();	
         					
         	            }
         	        });
@@ -119,16 +117,27 @@ public class Main extends Application {
         scannerReadThread.start();
 	}
 	
-	public void updateZone(ArrayList skiltGruppe){
+	public void updateZone(){
 		//Oppdaterer hvilken skiltsone man er i.
+		pictures.addAll(Arrays.asList(imgView1, imgView2, imgView3, imgView4, imgView5, imgView6));
+		labels.addAll(Arrays.asList(tekstLabel1, tekstLabel2, tekstLabel3, tekstLabel4));
+    	String kortNr2 = input_text.getText();
+    	System.out.println(input_text.getText());
+    	input_text.clear();
+    	input_text.requestFocus();
+    	String nokkel = "src/andre_ting/"+kortNr2+".txt";
+		Splitt splitt = new Splitt(nokkel);
+		File fil = splitt.getFile();
+		splitt.dele(fil);
+		this.skiltGruppe = splitt.getSkiltGruppe();
 		if (skiltGruppe.size() == 2) {
-			TwoImage mp = new TwoImage(skiltGruppe, pictures, labels);
+			TwoImage mp = new TwoImage(this.skiltGruppe, this.pictures, this.labels);
 			mp.makeP();
 			pictures = mp.getPictures();
 			addImage(2,pictures);
 			addText(2,labels);
 		} else if (skiltGruppe.size() == 3) {
-			ThreeImage mp = new ThreeImage(skiltGruppe, pictures, labels);
+			ThreeImage mp = new ThreeImage(this.skiltGruppe, this.pictures, this.labels);
 			mp.makeP();
 			mp.makeT();
 			pictures = mp.getPictures();
@@ -136,7 +145,7 @@ public class Main extends Application {
 			addImage(3,pictures);
 			addText(3,labels);
 		} else if (skiltGruppe.size() == 4) {
-			FourImage mp = new FourImage(skiltGruppe,pictures, labels);
+			FourImage mp = new FourImage(this.skiltGruppe, this.pictures, this.labels);
 			mp.makeP();
 			mp.makeT();
 			pictures = mp.getPictures();
@@ -144,29 +153,31 @@ public class Main extends Application {
 			addImage(4,pictures);
 			addText(4,labels);
 		} else if (skiltGruppe.size() == 5) {
-			FiveImage mp = new FiveImage(skiltGruppe, pictures, labels);
-			mp.makeP();
-			mp.makeT();
-			pictures = mp.getPictures();
-			labels = mp.getLabels();
+			FiveImage mp = new FiveImage(this.skiltGruppe, this.pictures, this.labels);
 			addImage(5,pictures);
 			addText(5,labels);
-			
-		} else if (skiltGruppe.size() == 6) {
-			SixImage mp = new SixImage(skiltGruppe, pictures, labels);
-			mp.makeP();
-			mp.makeT();
 			pictures = mp.getPictures();
 			labels = mp.getLabels();
-			addImage(6,pictures);
+			mp.makeP();
+			mp.makeT();
+			
+		} else if (skiltGruppe.size() == 6) {
+			SixImage mp = new SixImage(this.skiltGruppe, this.pictures, this.labels);
+			mp.makeP();
+			mp.makeT();
+			this.pictures = mp.getPictures();
+			labels = mp.getLabels();
+			addImage(6,this.pictures);
 			addText(6,labels);
 		} else {
 			throw new IllegalArgumentException();
 		}
+		Skilt fartskilt = skiltGruppe.get(0);
+		speedLimit = fartskilt.getSkiltnr();
 		
 	}
 	
-	public void updateColore(Skilt fartskilt, int speedLimit,MediaPlayer mediaPlayer, UpdateSpeed us){
+	public void updateColore(UpdateSpeed us){
 		correctSpeedLimit = speedLimit;
 		Timer timer = new java.util.Timer();
 		timer.schedule(new TimerTask() {
@@ -178,17 +189,17 @@ public class Main extends Application {
 							
 							if(Integer.parseInt(speed) <= correctSpeedLimit){
 								speedLabel.setTextFill(Color.web("#F8F8F8"));
-								mediaPlayer.stop();
+								//mediaPlayer.stop();
 							}
 							else if(Integer.parseInt(speed)<= correctSpeedLimit*1.15){
 								speedLabel.setTextFill(Color.web("FF6600"));
-								mediaPlayer.stop();
+								//mediaPlayer.stop();
 								
 							}
 							else {
 								speedLabel.setTextFill(Color.web("#CC0000"));
 
-								mediaPlayer.play();
+								//mediaPlayer.play();
 								
 							}
 						}
